@@ -1,0 +1,100 @@
+2DA PREGUNTA 3ER PARCIAL
+.h ╰(￣ω￣ｏ)
+
+struct Nodo {
+int dato;
+Nodo* siguiente;
+};
+
+class Datos {
+private:
+Nodo* frente;
+Nodo* fin;
+
+int nuevopedido;
+
+public:
+Datos();
+void encolar();
+void desencolar();
+void mostrar();
+};
+
+.cpp (´。＿。｀)
+
+#include <iostream>
+#include "Datos.h"
+using namespace std;
+
+Datos::Datos() {
+  frente = nullptr;
+  fin = nullptr;
+}
+
+void Datos::encolar()
+{
+  cout << "Ingrese el nuevo pedido:"
+  cin >> nuevo;
+
+  Nodo* nuevoNodo = new Nodo();
+  nuevoNodo->dato = nuevo;
+  nuevoNodo->siguiente = nullptr;
+
+ if (frente == nullptr) {
+        frente = nuevoNodo;
+        fin = nuevoNodo;
+    } else {
+        // Si ya hay elementos
+        fin->siguiente = nuevoNodo;
+        fin = nuevoNodo;
+    }
+    cout << "Pedido encolado correctamente." << endl;
+}
+
+void desencolar()
+{
+if (frente == nullptr) {
+        cout << "La cola está vacía. No hay pedidos para atender." << endl;
+        return;
+    }
+
+    Nodo* temp = frente;
+    frente = frente->siguiente;
+
+    // Si la cola quedó vacía después de eliminar
+    if (frente == nullptr) {
+        fin = nullptr;
+    }
+
+    cout << "Pedido atendido: " << temp->dato << endl;
+    delete temp;
+}
+void mostrar()
+{
+if (frente == nullptr) {
+        cout << "La cola está vacía. No hay pedidos registrados." << endl;
+        return;
+    }
+
+    Nodo* actual = frente;
+    cout << "Pedidos en la cola:" << endl;
+    while (actual != nullptr) {
+        cout << "- Pedido: " << actual->dato << endl;
+        actual = actual->siguiente;
+    }
+}
+
+MAIN(*/ω＼*)
+#include "Datos.h"
+int main() {
+    Datos cola;
+
+    cola.encolar();
+    cola.encolar();
+    cola.mostrar();
+
+    cola.desencolar();
+    cola.mostrar();
+
+    return 0;
+}
